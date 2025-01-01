@@ -1,36 +1,37 @@
 import axios from 'axios';
 
-export default async function Blogs(){
+export default async function Blogs() {
+    const blogs = await getBlogs();
     return (
         <div>
             <h1>Blogs</h1>
             {
-            (await getBlogs()).map((blog : IBlog) => <Todo key={blog.id} blog={blog}/>)
+                blogs.map((blog: IBlog) => <Todo key={blog.id} blog={blog} />)
             }
         </div>
     );
 
-    async function getBlogs(){
-        try{
+    async function getBlogs() {
+        try {
             const response = await axios.get('https://jsonplaceholder.typicode.com/todos');
             return response.data;
         }
-        catch(error){
+        catch (error) {
             console.dir(error, { depth: null });
         }
     }
 }
 
 interface IBlog {
-    id : number;
-    title : string;
-    completed : boolean;
+    id: number;
+    title: string;
+    completed: boolean;
 }
-interface ITodoProps{
-    blog : IBlog
+interface ITodoProps {
+    blog: IBlog
 }
 
-function Todo({blog} : ITodoProps){
+function Todo({ blog }: ITodoProps) {
     return (
         <div>
             <h2>{blog.title}</h2>
