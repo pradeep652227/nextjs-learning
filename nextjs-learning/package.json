@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "dev:v2": "next next-auth"
+    "dev:v2": "next next-static_site",
+    "build:v2": "next build next-static_site",
+    "start:v2": "next start next-static_site"
   },
   "dependencies": {
     "@types/jsonwebtoken": "^9.0.7",
